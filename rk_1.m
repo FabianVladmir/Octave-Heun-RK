@@ -10,16 +10,16 @@ function rk1(f,a,b,alpha,N,c)
   h=(b-a)/N;
   t=a;
   w=alpha;
-  ya(1,1)=t;
-  ya(1,2)=w;
+  q(1,1)=t;
+  t(1,2)=w;
   if c=='H'
     for i=1:N
       k1=h*f(t,w);
       k2=h*f(t+(2/3)*h,w+(2/3)*k1);
       w=w+(1/4)*(k1+3*k2);
       t=a+i*h;
-      ya(i+1,1)=t;
-      ya(i+1,2)=w;
+      q(i+1,1)=t;
+      t(i+1,2)=w;
       fprintf('\n%0.4f ||%0.4f ||%0.4f\n',double(k1),double(k2),double(w))
 
     endfor
