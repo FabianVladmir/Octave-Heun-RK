@@ -11,7 +11,7 @@ function rk1(f,a,b,alpha,N,c)
   t=a;
   w=alpha;
   q(1,1)=t;
-  t(1,2)=w;
+  q(1,2)=w;
   if c=='H'
     for i=1:N
       k1=h*f(t,w);
@@ -19,7 +19,7 @@ function rk1(f,a,b,alpha,N,c)
       w=w+(1/4)*(k1+3*k2);
       t=a+i*h;
       q(i+1,1)=t;
-      t(i+1,2)=w;
+      q(i+1,2)=w;
       fprintf('\n%0.4f ||%0.4f ||%0.4f\n',double(k1),double(k2),double(w))
 
     endfor
@@ -30,10 +30,10 @@ function rk1(f,a,b,alpha,N,c)
       k2=h*f(t+h/2,w+k1/2);
       k3=h*f(t+h/2,w+k2/2);
       k4=h*f(t+h,w+k3);
-      w=w+(1/6)*(k1+2*k2+2*k3+k4);
+      w=w+(k1+2*k2+2*k3+k4)/6;
       t=a+i*h;
-      ya(i+1,1)=t;
-      ya(i+1,2)=w;
+      q(i+1,1)=t;
+      q(i+1,2)=w;
       fprintf('\n%0.4f ||%0.4f ||%0.4f ||%0.4f ||%0.4f\n',double(k1),double(k2),double(k3),double(k4),double(w))
     endfor
     
