@@ -30,7 +30,7 @@ function rk1(f,a,b,alpha,N,c)
       k2=h*f(t+h/2,w+k1/2);
       k3=h*f(t+h/2,w+k2/2);
       k4=h*f(t+h,w+k3);
-      w=w+(k1+2*k2+2*k3+k4)/6;
+      w=w+(1/6)*(k1+2*k2+2*k3+k4);
       t=a+i*h;
       q(i+1,1)=t;
       q(i+1,2)=w;
@@ -41,5 +41,5 @@ function rk1(f,a,b,alpha,N,c)
     fprintf('valor del metodo incorrecto')
   end
   t=a:0.01:b;
-  plot(ya(:,1),ya(:,2),'ro')
+  plot(q(:,1),q(:,2),'ro')
 endfunction
